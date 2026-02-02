@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel/dist/assets/owl.theme.default.css";
+import "owl.carousel";
+import $ from "jquery";
+import LoadingState from "./LoadingState";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoaded, setIsLoaded] = useState(false);
+ 
 
   const owlOptions = {
     loop: true,
@@ -16,9 +19,9 @@ const HotCollections = () => {
     dots: true,
     responsive: {
       0: { items: 1 },
-      600: { items: 2 },
+      800: { items: 2 },
       1000: { items: 3 },
-      1400: { items: 4 },
+      1200: { items: 4 },
     },
   };
 
@@ -29,7 +32,7 @@ const HotCollections = () => {
       )
       .then((response) => {
         setCollections(response.data);
-        console.log("Hot Collections Data:", response.data);
+        setIsLoaded(true);
       })
       .catch((error) => {
         console.error("Error fetching hot collections:", error);
@@ -37,10 +40,10 @@ const HotCollections = () => {
   }
 
   useEffect(() => {
-    setLoading(true);
+
     fetchHotCollections();
-    setLoading(false);
-  }, []);
+
+  }, [isLoaded]);
 
   return (
     <section id="section-collections" className="no-bottom">
@@ -52,7 +55,9 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          {!loading ? (
+          {!isLoaded ? (
+                <LoadingState />
+          ) : (
             <OwlCarousel className="owl-theme" {...owlOptions}>
               {collections.map((collections, index) => (
                 <div className="col-lg-12" key={index}>
@@ -86,10 +91,6 @@ const HotCollections = () => {
                 </div>
               ))}
             </OwlCarousel>
-          ) : (
-            <div className="col-lg-12 text-center">
-              <p>Loading collections...</p>
-            </div>
           )}
         </div>
       </div>
