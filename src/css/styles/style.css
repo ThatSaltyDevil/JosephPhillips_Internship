@@ -16714,3 +16714,31 @@ img {
 .no-cursor {
   cursor: not-allowed;
 }
+
+
+
+.skeleton-item__container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    overflow: hidden;
+    padding: 0;
+}
+.nft-image {
+    height: 240px; 
+    background-color: #e0e0e0;
+    overflow: hidden;
+}
+
+.skeleton__pp-coll.skeleton-box {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    margin: 0 auto;
+  }
+
+  .loading__container {
+    display: flex;
+  }
