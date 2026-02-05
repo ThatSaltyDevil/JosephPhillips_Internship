@@ -6,6 +6,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel";
 import LoadingState from "./LoadingState";
 import { render } from "@testing-library/react";
+import CountdownTimer from "./CountdownTimer";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -33,15 +34,7 @@ const NewItems = () => {
     
   }, []);
 
-  useEffect(() => {
-    if (!isLoaded) return;
-
-    const timer = setInterval(() => {
-      setTime((prevTime) => prevTime + 1);
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, [isLoaded]);
+  
 
   const owlOptions = {
     loop: true,
@@ -56,20 +49,7 @@ const NewItems = () => {
     },
   };
 
-  const timers = useMemo(() => {
-    const now = Date.now();
-
-    return newItems.map((item) => {
-      const expiryTimestamp = new Date(item.expiryDate).getTime();
-      const diff = expiryTimestamp ? expiryTimestamp - now : 0;
-
-      return {
-        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((diff / (1000 * 60)) % 60),
-        seconds: Math.floor((diff / 1000) % 60),
-      };
-    });
-  }, [newItems, time]);
+  
 
   return (
     <section id="section-items" className="no-bottom">
@@ -104,18 +84,7 @@ const NewItems = () => {
                       </Link>
                     </div>
                     {newItems.expiryDate && (
-                      <div className="de_countdown" key={index}>
-                        <span className="timer__Hours">
-                          {timers[index].hours}h{" "}
-                        </span>
-                        <span className="timer__Minutes">
-                          {timers[index].minutes.toString().padStart(2, "0")}
-                          m{" "}
-                        </span>
-                        <span className="timer__Seconds">
-                          {timers[index].seconds.toString().padStart(2, "0")}s
-                        </span>
-                      </div>
+                      <CountdownTimer expiryDate={newItems.expiryDate} />
                     )}
 
                     <div className="nft__item_wrap">
