@@ -1,15 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel";
 import LoadingState from "./LoadingState";
+import { render } from "@testing-library/react";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [timers, setTimers] = useState({});
+  const [time, setTime] = useState(0);
 
   async function fetchNewItems() {
     await axios
@@ -26,9 +27,22 @@ const NewItems = () => {
   }
 
   useEffect(() => {
-    fetchNewItems();
+    if (!isLoaded) {
+      fetchNewItems();
+    }
     
-  }, [isLoaded]);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+    const timer = requestAnimationFrame(() => {
+      setTime((prevTime) => prevTime + 1);
+      
+    }, 1000) [isLoaded];
+    cancelAnimationFrame(timer);};
+    
+  
+  }, [time, isLoaded]);
 
   const owlOptions = {
     loop: true,
@@ -43,29 +57,22 @@ const NewItems = () => {
     },
   };
 
-
-  // function startTimers() {
-  
-  
-  // }
-  
   let now = Date.now();
-    console.log("now:", now);
-  
-  let expiryDates = newItems.map((item) => item.expiryDate).filter((date) => date);
-    console.log("expiryDates:", expiryDates);
-  
+
+  let expiryDates = newItems.map((item) => item.expiryDate);
+
   let nowTimestamps = expiryDates.map((date) => new Date(date).getTime());
-    console.log("nowTimestamps:", nowTimestamps);
-  
-  let timeDiffs = nowTimestamps.map((timestamp) => timestamp - now);
-    console.log("timeDiffs:", timeDiffs);
 
+  let timeDiffs = nowTimestamps.map((timestamp) =>
+    timestamp ? timestamp - now : 0,);
 
-  
-
-
-  
+  let timerSeconds = timeDiffs.map((diff) => Math.floor((diff / 1000) % 60));
+  let timerMinutes = timeDiffs.map((diff) =>
+    Math.floor((diff / (1000 * 60)) % 60),
+  );
+  let timerHours = timeDiffs.map((diff) =>
+    Math.floor((diff / (1000 * 60 * 60)) % 24),
+  );
 
   return (
     <section id="section-items" className="no-bottom">
@@ -101,13 +108,15 @@ const NewItems = () => {
                     </div>
                     {newItems.expiryDate && (
                       <div className="de_countdown" key={index}>
-                        <span className="timer__Hours">{}:</span>
-                        <span className="timer__Minutes">{}:</span>
+                        <span className="timer__Hours">
+                          {timerHours[index].toString()}h{" "}
+                        </span>
+                        <span className="timer__Minutes">
+                          {timerMinutes[index].toString().padStart(2, "0")}
+                          m{" "}
+                        </span>
                         <span className="timer__Seconds">
-                          {}
-                        :</span>
-                        <span className="timer__Millis">
-                          {}
+                          {timerSeconds[index].toString().padStart(2, "0")}s
                         </span>
                       </div>
                     )}
