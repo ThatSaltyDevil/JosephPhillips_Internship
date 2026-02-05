@@ -56,22 +56,20 @@ const NewItems = () => {
     },
   };
 
-  let now = Date.now();
+  const timers = useMemo(() => {
+    const now = Date.now();
 
-  let expiryDates = newItems.map((item) => item.expiryDate);
+    return newItems.map((item) => {
+      const expiryTimestamp = new Date(item.expiryDate).getTime();
+      const diff = expiryTimestamp ? expiryTimestamp - now : 0;
 
-  let nowTimestamps = expiryDates.map((date) => new Date(date).getTime());
-
-  let timeDiffs = nowTimestamps.map((timestamp) =>
-    timestamp ? timestamp - now : 0,);
-
-  let timerSeconds = timeDiffs.map((diff) => Math.floor((diff / 1000) % 60));
-  let timerMinutes = timeDiffs.map((diff) =>
-    Math.floor((diff / (1000 * 60)) % 60),
-  );
-  let timerHours = timeDiffs.map((diff) =>
-    Math.floor((diff / (1000 * 60 * 60)) % 24),
-  );
+      return {
+        hours: Math.floor((diff / (1000 * 60 * 60)) % 24),
+        minutes: Math.floor((diff / (1000 * 60)) % 60),
+        seconds: Math.floor((diff / 1000) % 60),
+      };
+    });
+  }, [newItems, time]);
 
   return (
     <section id="section-items" className="no-bottom">
@@ -108,14 +106,14 @@ const NewItems = () => {
                     {newItems.expiryDate && (
                       <div className="de_countdown" key={index}>
                         <span className="timer__Hours">
-                          {timerHours[index].toString()}h{" "}
+                          {timers[index].hours}h{" "}
                         </span>
                         <span className="timer__Minutes">
-                          {timerMinutes[index].toString().padStart(2, "0")}
+                          {timers[index].minutes.toString().padStart(2, "0")}
                           m{" "}
                         </span>
                         <span className="timer__Seconds">
-                          {timerSeconds[index].toString().padStart(2, "0")}s
+                          {timers[index].seconds.toString().padStart(2, "0")}s
                         </span>
                       </div>
                     )}
