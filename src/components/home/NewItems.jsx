@@ -34,15 +34,14 @@ const NewItems = () => {
   }, []);
 
   useEffect(() => {
-    if (isLoaded) {
-    const timer = requestAnimationFrame(() => {
+    if (!isLoaded) return;
+
+    const timer = setInterval(() => {
       setTime((prevTime) => prevTime + 1);
-      
-    }, 1000) [isLoaded];
-    cancelAnimationFrame(timer);};
-    
-  
-  }, [time, isLoaded]);
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [isLoaded]);
 
   const owlOptions = {
     loop: true,
