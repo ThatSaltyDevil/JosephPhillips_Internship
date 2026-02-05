@@ -40,9 +40,7 @@ const HotCollections = () => {
   }
 
   useEffect(() => {
-
     fetchHotCollections();
-
   }, [isLoaded]);
 
   return (
@@ -63,7 +61,7 @@ const HotCollections = () => {
                 <div className="col-lg-12" key={index}>
                   <div className="nft_coll">
                     <div className="nft_wrap">
-                      <Link to="/item-details">
+                      <Link to={`/item-details/${collections.nftId}`}>
                         <img
                           src={collections.nftImage}
                           className="lazy img-fluid"
@@ -72,7 +70,7 @@ const HotCollections = () => {
                       </Link>
                     </div>
                     <div className="nft_coll_pp">
-                      <Link to="/author">
+                      <Link to={`/author/${collections.authorId}`}>
                         <img
                           className="lazy pp-coll"
                           src={collections.authorImage}
