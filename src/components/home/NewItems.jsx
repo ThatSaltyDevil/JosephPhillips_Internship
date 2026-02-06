@@ -4,9 +4,8 @@ import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel";
-import LoadingState from "./LoadingState";
-import { render } from "@testing-library/react";
 import CountdownTimer from "./CountdownTimer";
+import LoadingState2 from "./LoadingState2";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -62,12 +61,12 @@ const NewItems = () => {
             </div>
           </div>
           {!isLoaded ? (
-            <LoadingState />
+            <LoadingState2 />
           ) : (
             <OwlCarousel className="owl-theme" {...owlOptions}>
               {newItems.map((newItems, index) => (
                 <div className="col-lg-12" key={index}>
-                  <div className="nft__item">
+                  <div className="nft__item loading">
                     <div className="author_list_pp">
                       <Link
                         to={`/author/${newItems.authorId}`}
