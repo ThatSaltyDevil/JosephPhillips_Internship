@@ -4,7 +4,7 @@ import "owl.carousel";
 
 const LoadingState2 = () => {
   return (
-    <div className="loading__container">
+    <div className="items__container">
       <div className="col-lg-3">
         <div className="nft__item loading">
           <div className="author_list_pp">

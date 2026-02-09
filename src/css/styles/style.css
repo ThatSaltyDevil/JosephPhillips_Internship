@@ -16801,3 +16801,15 @@ img {
     flex-direction: column;
     
   }
+
+  .items__container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 1200px) {
+    .items__container{
+      
+    }
+  }
