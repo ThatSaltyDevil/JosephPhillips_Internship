@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const AuthorItems = ( { items }, { authorPic } ) => {
+
+const AuthorItems = ( { items , authorImage } ) => {
   const collection = items
-  console.log('Image URL:', authorPic);
+  console.log('Image URL:', authorImage);
+
   return (
     <div className="de_tab_content">
       <div className="tab-1">
@@ -14,12 +16,12 @@ const AuthorItems = ( { items }, { authorPic } ) => {
               key={collection.id}
             >
               <div className="nft__item">
-                {!authorPic ? (
+                {!authorImage ? (
                   <p>One moment please...</p>
                 ) : (
                   <div className="author_list_pp">
                     <Link to="">
-                      <img className="lazy" src={authorPic} alt="" />
+                      <img className="lazy" src={authorImage} alt="" />
                       <i className="fa fa-check"></i>
                     </Link>
                   </div>

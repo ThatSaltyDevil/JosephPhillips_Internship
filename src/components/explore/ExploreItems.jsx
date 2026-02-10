@@ -7,7 +7,6 @@ const ExploreItems = () => {
 
   const handleOptionChange = (event) => {
     setSortOption(event.target.value);
-    console.log(event.target.value);
   };
 
   return (
