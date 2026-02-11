@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import LoadingStateTopList from "./LoadingStateTopList";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const TopSellers = () => {
   const [topSellers, setTopSellers] = useState([]);
@@ -26,6 +28,7 @@ const TopSellers = () => {
     if (!isLoaded) {
       fetchTopSellers();
     }
+    AOS.init()
   }, []);
 
   return (
@@ -44,7 +47,12 @@ const TopSellers = () => {
                 !isLoaded ? (
                   <LoadingStateTopList key={index} />
                 ) : (
-                  <li key={index}>
+                  <li
+                    key={index}
+                    data-aos="fade-up"
+                    data-aos-duration="500"
+                    data-aos-easing="ease-in-out"
+                  >
                     <div className="author_list_pp">
                       <Link to={`/author/${seller.authorId}`}>
                         <img
