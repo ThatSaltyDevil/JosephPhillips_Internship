@@ -16828,5 +16828,8 @@ img {
   margin: 16px 0;
  }
 
-
+.img-fluid.img-rounded.mb-sm-30.nft-image{
+  height: 100%;
+  width: 100%;
+}
 

@@ -16,7 +16,6 @@ const ItemDetails = () => {
       )
       .then((response) => {
         setData(response.data);
-        console.log(data);
         setIsLoaded(true);
       })
       .catch((error) => {
@@ -26,8 +25,9 @@ const ItemDetails = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    fetchNftData() 
-  }, []);
+    fetchNftData();
+    console.log(data);
+  }, [isLoaded]);
 
   return (
     <div id="wrapper">
@@ -35,7 +35,7 @@ const ItemDetails = () => {
         <div id="top"></div>
         <section aria-label="section" className="mt90 sm-mt-0">
           <div className="container">
-            {!data ? (
+            {!isLoaded ? (
               <ItemsLoadingState />
             ) : (
               <div className="row">
@@ -66,7 +66,7 @@ const ItemDetails = () => {
                         <h6>Owner</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${data.ownerId}`}>
                               <img
                                 className="lazy"
                                 src={data.ownerImage}
@@ -86,7 +86,7 @@ const ItemDetails = () => {
                         <h6>Creator</h6>
                         <div className="item_author">
                           <div className="author_list_pp">
-                            <Link to="/author">
+                            <Link to={`/author/${data.creatorId}`}>
                               <img
                                 className="lazy"
                                 src={data.creatorImage}
