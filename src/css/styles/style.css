@@ -16808,4 +16808,25 @@ img {
     flex-wrap: wrap;
   }
 
-  
+  .item_info_views.skeleton-box {
+    height: 20px;
+    background-color: #dddbdd;
+  }
+
+  .item_info_like.skeleton-box {
+    height: 20px;
+    background-color: #dddbdd;
+  }
+
+ .item_description.skeleton-box {
+  height: 64px;
+  width: 100%;
+ }
+
+ .author_list_pp.skeleton-box {
+  background-color: #dddbdd;
+  margin: 16px 0;
+ }
+
+
+
