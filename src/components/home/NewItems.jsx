@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
@@ -6,6 +6,8 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel";
 import CountdownTimer from "./CountdownTimer";
 import LoadingState2 from "./LoadingState2";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([]);
@@ -30,7 +32,7 @@ const NewItems = () => {
     if (!isLoaded) {
       fetchNewItems();
     }
-    
+    AOS.init()
   }, []);
 
   
@@ -66,7 +68,12 @@ const NewItems = () => {
             <OwlCarousel className="owl-theme" {...owlOptions}>
               {newItems.map((newItems, index) => (
                 <div className="col-lg-12" key={index}>
-                  <div className="nft__item loading">
+                  <div
+                    className="nft__item loading"
+                    data-aos="fade-up"
+                    data-aos-duration="500"
+                    data-aos-easing="ease-in-out"
+                  >
                     <div className="author_list_pp">
                       <Link
                         to={`/author/${newItems.authorId}`}

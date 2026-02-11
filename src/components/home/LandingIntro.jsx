@@ -16,12 +16,21 @@ const LandingIntro = () => {
                 className="bg-color-2 i-boxed icon_wallet"
                 data-aos="fade-up"
                 data-aos-easing="ease-in-out"
+                data-aos-duration="500"
               ></i>
               <div className="text">
-                <h4 data-aos="fade-up" data-aos-easing="ease-in-out">
+                <h4
+                  data-aos="fade-up"
+                  data-aos-easing="ease-in-out"
+                  data-aos-duration="500"
+                >
                   Set up your wallet
                 </h4>
-                <p data-aos="fade-up" data-aos-easing="ease-in-out">
+                <p
+                  data-aos="fade-up"
+                  data-aos-easing="ease-in-out"
+                  data-aos-duration="500"
+                >
                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                   accusantium doloremque laudantium, totam rem.
                 </p>
@@ -35,12 +44,21 @@ const LandingIntro = () => {
                 className="bg-color-2 i-boxed icon_cloud-upload_alt"
                 data-aos="fade-up"
                 data-aos-easing="ease-in-out"
+                data-aos-duration="500"
               ></i>
               <div className="text">
-                <h4 data-aos="fade-up" data-aos-easing="ease-in-out">
+                <h4
+                  data-aos="fade-up"
+                  data-aos-easing="ease-in-out"
+                  data-aos-duration="500"
+                >
                   Add your NFT's
                 </h4>
-                <p data-aos="fade-up" data-aos-easing="ease-in-out">
+                <p
+                  data-aos="fade-up"
+                  data-aos-easing="ease-in-out"
+                  data-aos-duration="500"
+                >
                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                   accusantium doloremque laudantium, totam rem.
                 </p>
@@ -54,12 +72,21 @@ const LandingIntro = () => {
                 className="bg-color-2 i-boxed icon_tags_alt"
                 data-aos="fade-up"
                 data-aos-easing="ease-in-out"
+                data-aos-duration="500"
               ></i>
               <div className="text">
-                <h4 data-aos="fade-up" data-aos-easing="ease-in-out">
+                <h4
+                  data-aos="fade-up"
+                  data-aos-easing="ease-in-out"
+                  data-aos-duration="500"
+                >
                   Sell your NFT's
                 </h4>
-                <p data-aos="fade-up" data-aos-easing="ease-in-out">
+                <p
+                  data-aos="fade-up"
+                  data-aos-easing="ease-in-out"
+                  data-aos-duration="500"
+                >
                   Sed ut perspiciatis unde omnis iste natus error sit voluptatem
                   accusantium doloremque laudantium, totam rem.
                 </p>

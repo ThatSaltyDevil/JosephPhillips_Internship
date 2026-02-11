@@ -4,8 +4,9 @@ import axios from "axios";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel";
-import $ from "jquery";
 import LoadingState from "./LoadingState";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const HotCollections = () => {
   const [collections, setCollections] = useState([]);
@@ -41,6 +42,7 @@ const HotCollections = () => {
 
   useEffect(() => {
     fetchHotCollections();
+    AOS.init();
   }, [isLoaded]);
 
   return (
@@ -54,12 +56,17 @@ const HotCollections = () => {
             </div>
           </div>
           {!isLoaded ? (
-                <LoadingState />
+            <LoadingState />
           ) : (
             <OwlCarousel className="owl-theme" {...owlOptions}>
               {collections.map((collections, index) => (
                 <div className="col-lg-12" key={index}>
-                  <div className="nft_coll">
+                  <div
+                    className="nft_coll"
+                    data-aos="fade-up"
+                    data-aos-duration="500"
+                    data-aos-easing="ease-in-out"
+                  >
                     <div className="nft_wrap">
                       <Link to={`/item-details/${collections.nftId}`}>
                         <img
